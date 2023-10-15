@@ -1,6 +1,7 @@
 module com.phhs.app.tracker.phhsnjrotctrackerapp {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens com.phhs.app.tracker.phhsnjrotctrackerapp to javafx.fxml;

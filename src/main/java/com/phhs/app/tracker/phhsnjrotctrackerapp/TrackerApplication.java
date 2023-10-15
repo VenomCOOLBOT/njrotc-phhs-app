@@ -6,6 +6,10 @@ import java.io.IOException;
 
 public class TrackerApplication extends Application {
     private static TrackerApplication instance;
+
+    private static final String APP_ICON_PATH = "/images/cool_logo.png";
+    private static final String WINDOW_TITLE_PREFIX = "NJROTC";
+
     private WindowInit loginWindow;
     private WindowInit adminWindow;
     private WindowInit educationsWindow;
@@ -17,40 +21,50 @@ public class TrackerApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         instance = this;
-        loginPrompt();
+        loginWindow = createWindow("LOGIN", "login-view.fxml");
+        adminWindow = createWindow("ADMIN", "admin-view.fxml");
+        educationsWindow = createWindow("EDUCATIONS", "educations-view.fxml");
+        operationsWindow = createWindow("OPERATIONS", "operations-view.fxml");
+        supplyWindow = createWindow("SUPPLY", "supply-view.fxml");
+        paWindow = createWindow("PUBLIC AFFAIRS", "pa-view.fxml");
+        itWindow = createWindow("INFORMATION TECHNOLOGY", "it-view.fxml");
 
-        adminWindow = new WindowInit("NJROTC ADMIN", "admin-view.fxml", false, "/images/cool_logo.png");
-        educationsWindow = new WindowInit("NJROTC EDUCATIONS", "educations-view.fxml", false, "/images/cool_logo.png");
-        operationsWindow = new WindowInit("NJROTC OPERATIONS", "operations-view.fxml", false, "/images/cool_logo.png");
-        supplyWindow = new WindowInit("NJROTC SUPPLY", "supply-view.fxml", false, "/images/cool_logo.png");
-        paWindow = new WindowInit("NJROTC PUBLIC AFFAIRS", "pa-view.fxml", false, "/images/cool_logo.png");
-        itWindow = new WindowInit("NJROTC INFORMATION TECHNOLOGY", "it-view.fxml", false, "/images/cool_logo.png");
-    }
-    private void loginPrompt() {
-        loginWindow = new WindowInit("NJROTC LOGIN", "login-view.fxml", false, "/images/cool_logo.png");
         loginWindow.showWindow();
     }
+
+    private WindowInit createWindow(String title, String fxmlFile) {
+        return new WindowInit(WINDOW_TITLE_PREFIX + " " + title, fxmlFile, false, APP_ICON_PATH);
+    }
+
     public static TrackerApplication getInstance() {
         return instance;
     }
+
+    // Getters for your windows
     public WindowInit getLoginWindow() {
         return loginWindow;
     }
+
     public WindowInit getAdminWindow() {
         return adminWindow;
     }
+
     public WindowInit getEducationsWindow() {
         return educationsWindow;
     }
+
     public WindowInit getOperationsWindow() {
         return operationsWindow;
     }
+
     public WindowInit getSupplyWindow() {
         return supplyWindow;
     }
+
     public WindowInit getPAWindow() {
         return paWindow;
     }
+
     public WindowInit getITWindow() {
         return itWindow;
     }
@@ -58,6 +72,4 @@ public class TrackerApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-
-
 }
